@@ -9,11 +9,13 @@ angular.module('NarrowItDownApp', [])
 
 function FoundItems() {
   var ddo = {
-    templateUrl: 'foundItems.html'
-      //template: "hello"
+    templateUrl: 'foundItems.html',
+    scope: {
+        items: '<',
+        onRemove: '&'
+    }
   };
 
-console.log("we are here");
   return ddo;
 }
     
@@ -23,12 +25,18 @@ function NarrowItDownController($scope, MenuSearchService) {
     $scope.searchTerm = "";
     
     narrowedDownList.logMenuItems = function () {
-        //narrowedDownList.found = [4, 5, 6, 7]; 
-         MenuSearchService.getMatchedMenuItems($scope.searchTerm).then(function(data){
+        MenuSearchService.getMatchedMenuItems($scope.searchTerm).then(function(data){
             narrowedDownList.found = data;
-            console.log(narrowedDownList.found);
+            //console.log(narrowedDownList.found);
+        }).catch(function (error) {
+            console.log(error);
         });
-    }
+    };
+    
+    narrowedDownList.removeItem = function (itemIndex) {
+        //console.log("'this' is: ", this);
+        narrowedDownList.found.splice(itemIndex, 1);
+    };    
 }
 
 MenuSearchService.$inject = ['$http', 'ApiPath'];
@@ -40,20 +48,16 @@ function MenuSearchService($http, ApiPath) {
             method: "GET",
             url: ApiPath,
             }).then(function (result) {
-            //console.log("Search Term: " + searchTerm);
-            //console.log(result.data);
             // process result and only keep items that match
             var foundItemsList = new Array();
             for (var i = 0; i < result.data.menu_items.length; i++) {
                 var menuItemDesc = result.data.menu_items[i].description;
-                //console.log(menuItemDesc);
                 if (menuItemDesc.includes(searchTerm)) {
-                    //console.log("Found: " + searchTerm);
                     foundItemsList.push(result.data.menu_items[i]);
                 }
             }
             // return processed items
-            console.log(foundItemsList);            
+            //console.log(foundItemsList);            
             return foundItemsList;
         }).catch(function (error) {
             console.log(error);

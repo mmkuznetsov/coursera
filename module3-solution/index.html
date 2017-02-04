@@ -19,9 +19,15 @@
 
     <!-- found-items should be implemented as a component -->
     <!-- <found-items found-items="...." on-remove="...."></found-items> -->
-    <ul>
+    <!-- <ul>
         <found-items ng-repeat="item in narrowedDownList.found"></found-items>
-    </ul>
+    </ul> -->
+    <!-- <found-items
+        items="narrowedDownList.found"></found-items> -->
+    <found-items
+        items="narrowedDownList.found"
+        on-remove="narrowedDownList.removeItem(index)"></found-items>
+       
   </div>
 <script src="angular.min.js"></script>
 <script src="app.js"></script>
