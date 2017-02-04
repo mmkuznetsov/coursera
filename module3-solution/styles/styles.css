@@ -1,6 +1,9 @@
 h1 {
   margin-bottom: 30px;
 }
+h3 {
+  margin-left: 50px;  
+}
 input[type="text"] {
   width: 200px;
   float: left;
