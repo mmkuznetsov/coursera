@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
   </head>
-<body>
-   <div ng-controller='NarrowItDownController as narrowedDownList' class="container">
+<body ng-controller='NarrowItDownController as narrowedDownList'>
+   <div class="container">
     <h1>Narrow Down Your Chinese Menu Choice</h1>
 
     <div class="form-group">
@@ -16,19 +16,14 @@
     <div class="form-group narrow-button">
       <button ng-click="narrowedDownList.logMenuItems();" class="btn btn-primary">Narrow It Down For Me!</button>
     </div>
-
-    <!-- found-items should be implemented as a component -->
-    <!-- <found-items found-items="...." on-remove="...."></found-items> -->
-    <!-- <ul>
-        <found-items ng-repeat="item in narrowedDownList.found"></found-items>
-    </ul> -->
-    <!-- <found-items
-        items="narrowedDownList.found"></found-items> -->
-    <found-items
-        items="narrowedDownList.found"
-        on-remove="narrowedDownList.removeItem(index)"></found-items>
-       
   </div>
+
+    <div ng-if="narrowedDownList.showMessage">Nothing found</div>
+    <div>  
+        <found-items
+            items="narrowedDownList.found"
+            on-remove="narrowedDownList.removeItem(index)"></found-items>
+    </div>  
 <script src="angular.min.js"></script>
 <script src="app.js"></script>
 </body>

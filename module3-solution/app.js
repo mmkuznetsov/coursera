@@ -22,16 +22,30 @@ function FoundItems() {
 NarrowItDownController.$inject = ['$scope', 'MenuSearchService'];
 function NarrowItDownController($scope, MenuSearchService) {
     var narrowedDownList = this;
+    narrowedDownList.showMessage = false; 
     $scope.searchTerm = "";
+
     
     narrowedDownList.logMenuItems = function () {
+        narrowedDownList.found = [];
+        if ($scope.searchTerm.length === 0){
+                narrowedDownList.showMessage = true;
+                return;
+            }
         MenuSearchService.getMatchedMenuItems($scope.searchTerm).then(function(data){
             narrowedDownList.found = data;
+            if (narrowedDownList.found.length === 0){
+                narrowedDownList.showMessage = true;
+            }
+            else{
+            narrowedDownList.showMessage = false;
+            }
             //console.log(narrowedDownList.found);
         }).catch(function (error) {
             console.log(error);
         });
     };
+
     
     narrowedDownList.removeItem = function (itemIndex) {
         //console.log("'this' is: ", this);
@@ -39,6 +53,7 @@ function NarrowItDownController($scope, MenuSearchService) {
     };    
 }
 
+    
 MenuSearchService.$inject = ['$http', 'ApiPath'];
 function MenuSearchService($http, ApiPath) {
     var service = this;
