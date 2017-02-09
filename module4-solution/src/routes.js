@@ -22,15 +22,16 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
   // Categories page
   .state('categories', {
     url: '/categories',
-    templateUrl: 'src/menuapp/templates/categories.template.html'
-    //controller: 'CategoriesController as categories',
-    //resolve: {
-    //  items: ['MenuDataService', function (MenuDataService) {
-    //    return MenuDataService.getAllCategories();
-    //  }]
-    //}
+    templateUrl: 'src/menuapp/templates/categories.template.html',
+    controller: 'CategoriesController as categories'
+//    resolve: {
+//      items: ['MenuDataService', function (MenuDataService) {
+//        return MenuDataService.getAllCategories();
+//      }]
+//    }
   });
 
 }
 
 })();
+/* State switches views (htmls), that are associated with  controllers, specified in .state(). These views can utilize components (via tags in htmls). Such components can have their own htmls.*/
