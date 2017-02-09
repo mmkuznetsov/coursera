@@ -5,17 +5,12 @@ angular.module('MenuApp')
 .controller('CategoriesController', CategoriesController);
 
 
-//CategoriesController.$inject = ['items'];
-//function CategoriesController(items) {
-function CategoriesController() {    
+CategoriesController.$inject = ['items'];
+function CategoriesController(items) {    
   var categories = this;
-  //categories.items = items;
-  categories.items = [];
 
-  // Remove when data module is working
-  categories.$onInit = function () {
-    categories.items = [1, 2, 3];
-  };
+  categories.items = items;
+//    console.log(categories.items[0].name);
 }
 
 })();
