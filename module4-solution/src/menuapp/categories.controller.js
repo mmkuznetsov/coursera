@@ -10,7 +10,6 @@ function CategoriesController(items) {
   var categories = this;
 
   categories.items = items;
-//    console.log(categories.items[0].name);
 }
 
 })();

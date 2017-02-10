@@ -29,8 +29,20 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
         return MenuDataService.getAllCategories();
       }]
     }
-  });
+  })
 
+    //Items page
+    .state('items', {
+    url: '/items/{category}',
+    templateUrl: 'src/menuapp/templates/items.template.html',
+    controller: 'ItemsController as items',
+    resolve: {
+      catitems: ['$stateParams', 'MenuDataService',
+        function ($stateParams, MenuDataService) {
+          return MenuDataService.getMatchedMenuItems($stateParams.category);
+        }]
+    }
+  });
 }
 
 })();

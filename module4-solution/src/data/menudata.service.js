@@ -25,12 +25,14 @@ function MenuDataService($http, ApiPath1, ApiPath2) {
     };
     
     service.getMatchedMenuItems = function (categoryShortName) {
+            //console.log(categoryShortName);            
         return $http({
             method: "GET",
             url: (ApiPath2  + categoryShortName),
             })
         .then(function (result) {
-            return result;
+            //console.log(result.data.menu_items);            
+            return result.data.menu_items;
         })
         .catch(function (error) {
             console.log(error);
