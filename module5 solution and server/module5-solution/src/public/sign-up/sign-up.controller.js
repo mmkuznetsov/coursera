@@ -4,13 +4,22 @@
 angular.module('public')
 .controller('SignUpController', SignUpController);
 
-//MenuController.$inject = ['menuCategories'];
-function SignUpController() {
-  var $ctrl = this;
+SignUpController.$inject = ['MenuService'];
+function SignUpController(MenuService) {
+var $ctrl = this;
   
   $ctrl.submit = function () {
-    console.log($ctrl.user.username);
-    $ctrl.completed = true;
+    console.log($ctrl.user.menunumber);
+    MenuService.getItemByShortName($ctrl.user).then(function (result) {
+            console.log(result);
+            $ctrl.message = "Your information has been saved";
+            return result;
+        })
+        .catch(function (error) {
+            $ctrl.message = "No such menu number exists";
+            console.log(error);
+        })
+   // $ctrl.completed = true;
   };    
 }
 

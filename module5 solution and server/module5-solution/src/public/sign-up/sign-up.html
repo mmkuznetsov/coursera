@@ -1,37 +1,36 @@
     <fieldset>
       <form name='regForm' id="regForm" novalidate>
         <h3>Registration</h3>
-        <input type="text" name="username" placeholder="Pick a username"
-          ng-model="signUpCtrl.user.username"
+        First name: <input type="text" name="userfirstname" placeholder="Enter first name"
+          ng-model="signUpCtrl.user.userfirstname"
           required
-          minlength="4"
           ng-maxlength="10">
-          {{ signUpCtrl.user.username }}
+          {{ signUpCtrl.user.userfirstname }}
           <span
-            ng-if="(regForm.username.$error.minlength || regForm.username.$error.required) && regForm.username.$touched">
-            Username must be at least 4 characters long
+            ng-if="regForm.userfirstname.$error.required && regForm.userfirstname.$touched">
+            Please Enter first name
           </span>
-          <span ng-if="regForm.username.$error.maxlength && regForm.username.$touched">
-            Username must not be longer than 10 characters
+          <span ng-if="regForm.userfirstname.$error.maxlength && regForm.userfirstname.$touched">
+            First name must not be longer than 10 characters
           </span>
           <br>
 
-        <input type="text" name="userlastname" placeholder="Pick a userlastname"
+        Last name: <input type="text" name="userlastname" placeholder="Enter last name"
           ng-model="signUpCtrl.user.userlastname"
           required
-          minlength="4"
-          ng-maxlength="10">
+          minlength="2"
+          ng-maxlength="20">
           {{ signUpCtrl.user.userlastname }}
           <span
             ng-if="(regForm.userlastname.$error.minlength || regForm.userlastname.$error.required) && regForm.userlastname.$touched">
-            Userlastname must be at least 4 characters long
+            Last Name must be at least 2 characters long
           </span>
           <span ng-if="regForm.userlastname.$error.maxlength && regForm.userlastname.$touched">
-            Userlastname must not be longer than 10 characters
+            Last Name must not be longer than 20 characters
           </span>
           <br>
           
-        <input type="email" name="email" placeholder="Email"
+        Email: <input type="email" name="email" placeholder="Email"
           ng-model="signUpCtrl.user.email"
           required>
           <span ng-if="regForm.email.$invalid && regForm.email.$touched">
@@ -39,7 +38,7 @@
           </span>
           <br>
 
-        <input type="text" name="phone" placeholder="Phone ###-###-####"
+        Phone: <input type="text" name="phone" placeholder="Phone ###-###-####"
           ng-model="signUpCtrl.user.phone"
           pattern="(\d{3})-(\d{3})-(\d{4})">
           <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
@@ -47,13 +46,34 @@
           </span>
           <br>
 
-        <button
+        Favorite Dish: <input type="text" name="menunumber" placeholder="Enter a menu number"
+          ng-model="signUpCtrl.user.menunumber"
+          required
+          minlength="1"
+          ng-maxlength="5">
+          {{ signUpCtrl.user.menunumber }}
+          <span
+            ng-if="(regForm.menunumber.$error.minlength || regForm.menunumber.$error.required) && regForm.menunumber.$touched">
+            Menu Number must be at least 1 characters long
+          </span>
+          <span ng-if="regForm.menunumber.$error.maxlength && regForm.menunumber.$touched">
+            Menu Number must not be longer than 5 characters
+          </span>
+          <br>
+          
+        <!-- <button
           id="submitButton"
           ng-disabled="regForm.$invalid"
-          ng-click="signUpCtrl.submit()">Submit</button>
+          ng-click="signUpCtrl.submit()">Submit</button> -->
 
-          <div style="margin-top: 10px;">
+        <button
+          id="submitButton"
+          ng-click="signUpCtrl.submit()">Submit</button>
+        <div ng-if="signUpCtrl.message.length">
+          <h3>{{ signUpCtrl.message }}</h3>
+        </div>
+          <!--<div style="margin-top: 10px;">
             Form valid? {{ regForm.$valid }}
-          </div>
+          </div>-->
       </form>
     </fieldset>
