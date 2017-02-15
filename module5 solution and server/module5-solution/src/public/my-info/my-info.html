@@ -1,0 +1,17 @@
+<form>
+<div ng-if="myInfoCtrl.user.signedIn===true" class="user-details">
+    <div>{{myInfoCtrl.user.userfirstname}} {{myInfoCtrl.user.userlastname}}</div>
+    <div>{{myInfoCtrl.user.email}} {{myInfoCtrl.user.phone}}</div>
+    <div>Favorite Dish:</div>
+    <img class="img-responsive" width="250" height="150" ng-src="{{myInfoCtrl.basePath}}/images/{{myInfoCtrl.user.data.short_name}}.jpg" alt="{{myInfoCtrl.user.data.name}}">
+    <div>{{myInfoCtrl.user.data.short_name}}</div>
+    <div>
+      <h3>{{myInfoCtrl.user.data.name}}</h3>
+      <p>{{myInfoCtrl.user.data.description}}</p>
+    </div>
+</div>
+<div ng-if="myInfoCtrl.user.signedIn===false" class="user-details">
+    <a ui-sref="public.signup">Not Signed Up Yet. Sign up Now!</a>
+</div>
+</form>
+
