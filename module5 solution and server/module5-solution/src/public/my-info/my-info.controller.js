@@ -9,7 +9,7 @@ function MyInfoController(ApiPath, user) {
   var $ctrl = this;
   $ctrl.user = user;
   $ctrl.basePath = ApiPath;
-  console.log($ctrl.user);
+//console.log($ctrl.user);
     
 //MyInfoController.$inject = ['MenuService'];
 //function MyInfoController(MenuService) {
