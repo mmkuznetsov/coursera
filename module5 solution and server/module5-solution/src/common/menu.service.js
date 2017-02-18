@@ -41,7 +41,7 @@ function MenuService($http, ApiPath) {
   };
 
   service.getUser = function () {
-      console.log(service.user.data);  
+      //console.log(service.user.data);  
       return service.user;
   };
 }

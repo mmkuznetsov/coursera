@@ -11,7 +11,7 @@
             ng-if="regForm.userfirstname.$error.required && regForm.userfirstname.$touched">
             Please Enter first name
           </span>
-          <span ng-if="regForm.userfirstname.$error.maxlength && regForm.userfirstname.$touched">
+          <span ng-if="regForm.userfirstname.$error.maxlength">
             First name must not be longer than 10 characters
           </span>
           <br>
@@ -26,7 +26,7 @@
             ng-if="(regForm.userlastname.$error.minlength || regForm.userlastname.$error.required) && regForm.userlastname.$touched">
             Last Name must be at least 2 characters long
           </span>
-          <span ng-if="regForm.userlastname.$error.maxlength && regForm.userlastname.$touched">
+          <span ng-if="regForm.userlastname.$error.maxlength">
             Last Name must not be longer than 20 characters
           </span>
           <br>
@@ -73,8 +73,5 @@
         <div ng-if="signUpCtrl.message.length">
           <h3>{{ signUpCtrl.message }}</h3>
         </div>
-          <!--<div style="margin-top: 10px;">
-            Form valid? {{ regForm.$valid }}
-          </div>-->
       </form>
     </fieldset>
